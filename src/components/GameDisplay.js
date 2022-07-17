@@ -4,7 +4,7 @@ import './GameDisplay.css'
 
 function GameDisplay(props) {
     const [score, setScore] = useState(0);
-    const [round, setRound] = useState(1);
+    const [bestScore, setBestScore] = useState(0);
     const [cardsList, setCardsList] = useState(['red', 'palevioletred', 'burlywood', 'lightskyblue', 'lightgreen', 'orange', 'purple', 'brown', 'blue', 'black', 'yellow', 'lightseagreen'])
     const [selectedCards, setSelectedCards] = useState([]);
 
@@ -15,6 +15,11 @@ function GameDisplay(props) {
     }, [selectedCards])
 
     useEffect(() => {
+        //update best score
+        if (score > bestScore) {
+            setBestScore(score)
+        }
+
         //set score to 1 after first turn.
         if (selectedCards.length === 1) {
             setScore(1)
@@ -63,8 +68,14 @@ function GameDisplay(props) {
                     <h1 className="game-title">Memory Game</h1>
                 </div>
                 <div className="score-container">
-                    <p className="score-tag">Score:</p>
-                    <p className="score">{score}</p>
+                    <div className="best-score-container">
+                        <p className="score-tag">Best Score:</p>
+                        <p className="score">{bestScore}</p>
+                    </div>
+                    <div className="current-score-container">
+                        <p className="score-tag">Score:</p>
+                        <p className="score">{score}</p>
+                    </div>
                 </div>
             </div>
             <div className="card-display">{cardsList.map(card => {

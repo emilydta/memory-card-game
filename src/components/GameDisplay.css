@@ -27,6 +27,11 @@ html {
 
 .score-container {
     display: flex;
+    flex-direction: column;
+}
+
+.current-score-container, .best-score-container {
+    display: flex;
     gap: 1em;
 }
 
@@ -37,6 +42,7 @@ html {
 .score-tag,
 .score {
     font-size: 1.5rem;
+    margin: 0;
 }
 
 .card-display {
