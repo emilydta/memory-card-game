@@ -12,7 +12,7 @@
   top: 0;
   min-width: 100%;
   background-color: rgb(41, 41, 41);
-  color: white;
+  color: rgb(255, 255, 255);
   z-index: 5;
 }
 
@@ -60,4 +60,4 @@
   .instructions-container {
     font-size: 1rem;
   }
-  }
+}
