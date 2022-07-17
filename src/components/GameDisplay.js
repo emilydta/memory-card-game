@@ -8,20 +8,6 @@ function GameDisplay(props) {
     const [cardsList, setCardsList] = useState(['red', 'palevioletred', 'burlywood', 'lightskyblue', 'lightgreen', 'orange', 'purple', 'brown', 'blue', 'black', 'yellow', 'lightseagreen'])
     const [selectedCards, setSelectedCards] = useState([]);
 
-    const randomizeArray = (array) => {
-        let copyArray = [...array];
-        const newArray = [];
-
-        while (copyArray.length > 0) {
-            let randomIndx = Math.floor(Math.random() * copyArray.length);
-            newArray.push(copyArray[randomIndx]);
-
-            copyArray = copyArray
-                .slice(0, randomIndx)
-                .concat(copyArray.slice(randomIndx + 1));
-        };
-        return newArray;
-    }
 
     useEffect(() => {
         //shuffle cards after card select.
@@ -29,7 +15,7 @@ function GameDisplay(props) {
     }, [selectedCards])
 
     useEffect(() => {
-        //set score to 1 on first card select.
+        //set score to 1 after first turn.
         if (selectedCards.length === 1) {
             setScore(1)
         }
@@ -45,9 +31,26 @@ function GameDisplay(props) {
         }
     }, [cardsList])
 
-    // const checkForWin = () => {
-    //     return score === 10 ? blah : blah
-    // }
+    // useEffect(() => {
+    //     if (score === 12) {
+
+    //     }
+    // }, [score])
+
+    const randomizeArray = (array) => {
+        let copyArray = [...array];
+        const newArray = [];
+
+        while (copyArray.length > 0) {
+            let randomIndx = Math.floor(Math.random() * copyArray.length);
+            newArray.push(copyArray[randomIndx]);
+
+            copyArray = copyArray
+                .slice(0, randomIndx)
+                .concat(copyArray.slice(randomIndx + 1));
+        };
+        return newArray;
+    }
 
     const selectCard = (card) => {
         setSelectedCards(prevSelectedCards => [...prevSelectedCards, card]);
