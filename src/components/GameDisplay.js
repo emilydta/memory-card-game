@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import CardComponent from "./CardComponent";
 import './GameDisplay.css'
 
-function GameDisplay(props) {
+function GameDisplay() {
     const [score, setScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
     const [cardsList, setCardsList] = useState(['red', 'palevioletred', 'burlywood', 'lightskyblue', 'lightgreen', 'orange', 'purple', 'brown', 'blue', 'black', 'yellow', 'lightseagreen'])
@@ -36,12 +36,6 @@ function GameDisplay(props) {
         }
     }, [cardsList])
 
-    // useEffect(() => {
-    //     if (score === 12) {
-
-    //     }
-    // }, [score])
-
     const randomizeArray = (array) => {
         let copyArray = [...array];
         const newArray = [];
@@ -61,6 +55,12 @@ function GameDisplay(props) {
         setSelectedCards(prevSelectedCards => [...prevSelectedCards, card]);
     }
 
+    const restartGame = () => {
+        setScore(0);
+        setBestScore(0);
+        setSelectedCards([]);
+    }
+
     return (
         <div className="game-container">
             <div className="header-container">
@@ -78,16 +78,22 @@ function GameDisplay(props) {
                     </div>
                 </div>
             </div>
-            <div className="card-display">{cardsList.map(card => {
-                return (
-                    <CardComponent
-                        key={`${card}`}
-                        cardColor={`${card}`}
-                        handleClick={() => selectCard(card)}
-                    />
-                )
-            })}
-            </div>
+            {score === 12 ?
+                <div className="win-container">
+                    <h1>You win!</h1>
+                    <button type="button" className="play-again" onClick={restartGame}>Play Again?</button>
+                </div> :
+                <div className="card-display">{cardsList.map(card => {
+                    return (
+                        <CardComponent
+                            key={`${card}`}
+                            cardColor={`${card}`}
+                            handleClick={() => selectCard(card)}
+                        />
+                    )
+                })}
+                </div>}
+
         </div>
     )
 }
