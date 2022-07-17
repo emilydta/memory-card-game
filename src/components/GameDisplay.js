@@ -7,6 +7,7 @@ function GameDisplay() {
     const [bestScore, setBestScore] = useState(0);
     const [cardsList, setCardsList] = useState(['red', 'palevioletred', 'burlywood', 'lightskyblue', 'lightgreen', 'orange', 'purple', 'brown', 'blue', 'black', 'yellow', 'lightseagreen'])
     const [selectedCards, setSelectedCards] = useState([]);
+    const [match, setMatch] = useState(null);
 
 
     useEffect(() => {
@@ -23,16 +24,19 @@ function GameDisplay() {
         //set score to 1 after first turn.
         if (selectedCards.length === 1) {
             setScore(1)
+            setMatch(false);
         }
 
         //if there's a match
         if (selectedCards.length > 1 && selectedCards.length !== new Set(selectedCards).size) {
             setSelectedCards([]);
             setScore(0);
+            setMatch(true);
 
             //if there's no match
         } else if (selectedCards.length > 1 && selectedCards.length === new Set(selectedCards).size) {
             setScore(prevScore => prevScore + 1)
+            setMatch(false);
         }
     }, [cardsList])
 
@@ -83,7 +87,7 @@ function GameDisplay() {
                     <h1>You win!</h1>
                     <button type="button" className="play-again" onClick={restartGame}>Play Again?</button>
                 </div> :
-                <div className="card-display">{cardsList.map(card => {
+                <div className={`card-display ${match ? "match" : "no-match"}`}>{cardsList.map(card => {
                     return (
                         <CardComponent
                             key={`${card}`}
@@ -93,7 +97,6 @@ function GameDisplay() {
                     )
                 })}
                 </div>}
-
         </div>
     )
 }
