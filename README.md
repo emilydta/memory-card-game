@@ -12,4 +12,4 @@ Completing this project has taught me:
   - A little about CSS keyframe animations.
 
 
-Live version: https://emilydta.github.io/cv-app/
+Live version: https://emilydta.github.io/memory-game/
