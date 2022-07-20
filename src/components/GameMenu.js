@@ -8,7 +8,7 @@ function GameMenu(props) {
       </div>
             <div className="instructions-container">
                 <h1 className="instructions-heading">How to play:</h1>
-                <p className="instructions">Avoid clicking on a colour more than twice.</p>
+                <p className="instructions">Avoid clicking on the same colour twice.</p>
                 <button type="button"
                     className='start-button'
                     onClick={props.handleClick}>Start</button>
