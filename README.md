@@ -8,7 +8,7 @@ This project was completed as part of The Odin Project curriculum: https://www.t
 
 Completing this project has taught me:
 
-  - How to use the useEffect hook to mimic class-component lifecycle methods (componendDidMount, componentDidUpdate, componentWillUnmount).
+  - How to use the useEffect hook to mimic class-component lifecycle methods (componentDidMount, componentDidUpdate, componentWillUnmount).
   - A little about CSS keyframe animations.
 
 
